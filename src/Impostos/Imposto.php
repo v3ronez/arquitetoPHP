@@ -6,5 +6,5 @@ use App\Orcamento;
 
 interface Imposto
 {
-    public function calculaImposto(Orcamento $valor): float;
+    public function calculaImposto(Orcamento $orcamento): float;
 }
