@@ -7,14 +7,12 @@ use App\EstadosOrcamento\EstadoOrcamento;
 
 class Orcamento
 {
-    public float $valor;
-    public int $itens;
+    public float           $valor;
+    public int             $itens;
     public EstadoOrcamento $estadoAtual;
 
-    public function __construct($valor, $itens)
+    public function __construct()
     {
-        $this->valor = $valor;
-        $this->itens = $itens;
         $this->estadoAtual = new EmAprovacao();
     }
 
