@@ -2,11 +2,23 @@
 
 namespace App\Impostos;
 
+use App\AcoesGerarPedido\AcoesPosGerarPedido;
 use App\Orcamento;
 use DateTime;
 
-class GerarComandoHandler
+class GerarPedidoHandler
 {
+    /**
+     * @var AcoesPosGerarPedido[]
+     */
+    private array $acoesAposGerarPedido = [];
+
+    public function adicionarAcoesAposGerarPedido(AcoesPosGerarPedido $acoes
+    ): void {
+        foreach ($acoes as $acao) {
+            $this->acoesAposGerarPedido[] = $acao;
+        }
+    }
 
     public function execute(GerarPedido $gerarPedido)
     {
@@ -19,9 +31,8 @@ class GerarComandoHandler
         $pedido->dataFinalizacao = new DateTime();
         $pedido->nomeCliente = $gerarPedido->getNomeCliente();
 
-        //pedido repository
-        echo ('Pedido salvo').PHP_EOL;
-        //enviar email;
-        echo ('enviando email cliente').PHP_EOL;
+        foreach ($this->acoesAposGerarPedido as $acao) {
+            $acao->executarAcao($pedido);
+        }
     }
 }
