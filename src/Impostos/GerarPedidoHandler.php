@@ -13,7 +13,12 @@ class GerarPedidoHandler
      */
     private array $acoesAposGerarPedido = [];
 
-    public function adicionarAcoesAposGerarPedido(AcoesPosGerarPedido $acoes
+    /**
+     * @param  AcoesPosGerarPedido[]  $acoes
+     *
+     * @return void
+     */
+    public function adicionarAcoesAposGerarPedido(array $acoes
     ): void {
         foreach ($acoes as $acao) {
             $this->acoesAposGerarPedido[] = $acao;

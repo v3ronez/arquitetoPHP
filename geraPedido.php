@@ -14,10 +14,12 @@ $nomeCliente = $argv[3];
 
 
 $gerarPedido = new GerarPedido($valorOrcamento, $itens, $nomeCliente);
-$handle = new GerarPedidoHandler($gerarPedido);
+$handle = new GerarPedidoHandler();
 $handle->adicionarAcoesAposGerarPedido(
-    new LogGerarPedido(),
-    new CriarPedidoNoBanco(),
-    new EnviarPedidoPorEmail(),
+    [
+        new LogGerarPedido(),
+        new CriarPedidoNoBanco(),
+        new EnviarPedidoPorEmail(),
+    ]
 );
 $handle->execute($gerarPedido);
