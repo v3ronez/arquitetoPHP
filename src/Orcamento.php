@@ -18,33 +18,14 @@ class Orcamento implements Orcavel
         $this->itensDeOrcamento = [];
     }
 
-//    public function aplicaEstadoAtual()
-//    {
-//        $this->valor -= $this->estadoAtual->calcularDescontoExtra($this);
-//    }
-//
-//    public function aprova()
-//    {
-//        $this->estadoAtual->aprova($this);
-//    }
-//
-//    public function reprova()
-//    {
-//        $this->estadoAtual->reprova($this);
-//    }
-//
-//    public function finaliza()
-//    {
-//        $this->estadoAtual->finaliza($this);
-//    }
-
-    public function adicionaItem(Orcavel $item)
+    final public function adicionaItem(Orcavel $item)
     {
         $this->itensDeOrcamento[] = $item;
     }
 
     public function valor(): float
     {
+        sleep(2);
         return array_reduce($this->itensDeOrcamento, fn($acc, Orcavel $item) => $acc + $item->valor(), 0);
     }
 }

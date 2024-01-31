@@ -2,6 +2,7 @@
 
 declare(strict_types = 1);
 
+use App\CacheOrcamentoProxy;
 use App\ItemDeOrcamento;
 use App\Orcamento;
 
@@ -22,4 +23,6 @@ $orcamento->adicionaItem($item1);
 $orcamento->adicionaItem($item2);
 $orcamento->adicionaItem($orcamento2);
 
-echo($orcamento->valor());
+$cache = new CacheOrcamentoProxy($orcamento);
+echo ($cache->valor()).PHP_EOL;
+echo($cache->valor());
