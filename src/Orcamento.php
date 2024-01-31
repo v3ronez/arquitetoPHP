@@ -5,35 +5,46 @@ namespace App;
 use App\EstadosOrcamento\EmAprovacao;
 use App\EstadosOrcamento\EstadoOrcamento;
 
-class Orcamento
+class Orcamento implements Orcavel
 {
-    public float           $valor;
-    public int             $itens;
+    /* @var ItemDeOrcamentoDeOrcamento[] */
+    private array $itensDeOrcamento;
     public EstadoOrcamento $estadoAtual;
+
 
     public function __construct()
     {
         $this->estadoAtual = new EmAprovacao();
+        $this->itensDeOrcamento = [];
     }
 
-    public function aplicaEstadoAtual()
+//    public function aplicaEstadoAtual()
+//    {
+//        $this->valor -= $this->estadoAtual->calcularDescontoExtra($this);
+//    }
+//
+//    public function aprova()
+//    {
+//        $this->estadoAtual->aprova($this);
+//    }
+//
+//    public function reprova()
+//    {
+//        $this->estadoAtual->reprova($this);
+//    }
+//
+//    public function finaliza()
+//    {
+//        $this->estadoAtual->finaliza($this);
+//    }
+
+    public function adicionaItem(Orcavel $item)
     {
-        $this->valor -= $this->estadoAtual->calcularDescontoExtra($this);
+        $this->itensDeOrcamento[] = $item;
     }
 
-    public function aprova()
+    public function valor(): float
     {
-        $this->estadoAtual->aprova($this);
+        return array_reduce($this->itensDeOrcamento, fn($acc, Orcavel $item) => $acc + $item->valor(), 0);
     }
-
-    public function reprova()
-    {
-        $this->estadoAtual->reprova($this);
-    }
-
-    public function finaliza()
-    {
-        $this->estadoAtual->finaliza($this);
-    }
-
 }
