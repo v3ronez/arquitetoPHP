@@ -11,9 +11,9 @@ abstract class LogManager
         /** @var LoggerWriter $logWrite */
         $logWrite = $this->criarLog();
         $dataHoje = date('d/m/Y');
-        $mensagemFormatada = "[{$dataHoje}][{$severidade}]: {$mensagem}";
-        $logWrite->escreverLog($mensagem);
+        $mensagemFormatada = "[{$dataHoje}][{$severidade}]: {$mensagem}".PHP_EOL;
+        $logWrite->escreverLog($mensagemFormatada);
     }
 
-    public abstract function criarLog(): LoggerWriter;
+    abstract public function criarLog(): LoggerWriter;
 }
