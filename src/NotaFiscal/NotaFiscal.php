@@ -24,4 +24,10 @@ class NotaFiscal
             0
         );
     }
+
+//clona um objeto (tipo valor) e muda os valores que sao passadores dentro do metodo abaixo;
+    public function __clone(): void
+    {
+        $this->dataEmissao = new \DateTimeImmutable();
+    }
 }

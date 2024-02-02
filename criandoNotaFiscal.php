@@ -35,6 +35,10 @@ $nf->paraEmpresa('7023132', 'empresa daora')
     ->observacoes('volto amanha');
 //fluent interface (return $this);
 
+$nf2 = clone $nota; //call the magic method __clone;
+$nf2->itens[] = new ItemDeOrcamento();
+$nf2Builder = new BuilderNFProduto($nf2);
+$nf2Builder->observacoes("volto nada");
 
 $nfPronta = $nf->constroiNF();
 
