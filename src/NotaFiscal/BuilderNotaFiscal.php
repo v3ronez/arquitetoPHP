@@ -6,9 +6,9 @@ namespace App\NotaFiscal;
 
 use App\ItemDeOrcamento;
 
-class BuilderNotaFiscal
+abstract class BuilderNotaFiscal
 {
-    private NotaFiscal $notaFiscal;
+    protected NotaFiscal $notaFiscal;
 
     public function __construct(NotaFiscal $notaFiscal)
     {
@@ -40,8 +40,5 @@ class BuilderNotaFiscal
         return $this;
     }
 
-    public function constroiNF(): NotaFiscal
-    {
-        return $this->notaFiscal;
-    }
+    abstract function constroiNF(): NotaFiscal;
 }
